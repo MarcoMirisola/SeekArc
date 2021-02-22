@@ -26,6 +26,7 @@ package com.triggertrap.seekarc;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -253,7 +254,7 @@ public class SeekArc extends View {
 		mArcPaint.setAntiAlias(true);
 		mArcPaint.setStyle(Paint.Style.STROKE);
 		mArcPaint.setStrokeWidth(mArcWidth);
-		//mArcPaint.setAlpha(45);
+		mArcPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.SOLID));
 
 		mProgressPaint = new Paint();
 		mProgressPaint.setColor(progressColor);
