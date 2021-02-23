@@ -114,6 +114,11 @@ public class SeekArc extends View {
  	 */
 	private boolean mEnabled = true;
 
+	/**
+	 * set blur on arc
+	 */
+	private int mBlur = 0;
+
 	// Internal variables
 	private int mArcRadius = 0;
 	private float mProgressSweep = 0;
@@ -230,6 +235,7 @@ public class SeekArc extends View {
 			mClockwise = a.getBoolean(R.styleable.SeekArc_clockwise,
 					mClockwise);
 			mEnabled = a.getBoolean(R.styleable.SeekArc_enabled, mEnabled);
+			mBlur = a.getInteger(R.styleable.SeekArc_blur, mBlur);
 
 			arcColor = a.getColor(R.styleable.SeekArc_arcColor, arcColor);
 			progressColor = a.getColor(R.styleable.SeekArc_progressColor,
@@ -254,7 +260,8 @@ public class SeekArc extends View {
 		mArcPaint.setAntiAlias(true);
 		mArcPaint.setStyle(Paint.Style.STROKE);
 		mArcPaint.setStrokeWidth(mArcWidth);
-		mArcPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.SOLID));
+		if (mBlur > 0)
+			mArcPaint.setMaskFilter(new BlurMaskFilter(mBlur, BlurMaskFilter.Blur.SOLID));
 
 		mProgressPaint = new Paint();
 		mProgressPaint.setColor(progressColor);
